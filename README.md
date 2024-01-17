@@ -28,3 +28,6 @@ Olhe atentamente para o exemplo de resultado abaixo e certifique-se de que o esp
 
 
 ![image](https://github.com/AlexandrePMiranda/BudgetApp/assets/135765440/74b55098-bc4a-4b85-91a8-d63068ce5479)
+
+
+Para utilizar Budget app, é só copiar o código em um compilador python, e fzr um código de utilização do app de acordo com as instruções acima.
