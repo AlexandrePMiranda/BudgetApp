@@ -36,11 +36,11 @@ Olhe atentamente para o exemplo de resultado abaixo e certifique-se de que o esp
 
 
 Percentage spent by category
-<p>100|</p>          
-<p>90|</p>         
-<p>80|</p>          
-<p></p> 70|          
-<p></p> 60| o        
+100|         
+ 90|        
+ 80|         
+ 70|          
+ 60| o        
  50| o        
  40| o        
  30| o        
