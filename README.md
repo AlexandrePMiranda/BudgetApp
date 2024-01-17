@@ -17,16 +17,6 @@ Aqui está um exemplo de resultado:
 
 ![image](https://github.com/AlexandrePMiranda/BudgetApp/assets/135765440/8bc5f7c0-2f28-4a82-bb1c-a9c331e36809)
 
-
-*************Food*************
-initial deposit        1000.00
-groceries               -10.15
-restaurant and more foo -15.89
-Transfer to Clothing    -50.00
-Total: 923.96
-
-
-
 Além da classe Category, crie uma função (fora da classe) chamada create_spend_chart, que recebe uma lista de categorias como um argumento. Ela deve retornar uma string, que é um gráfico de barras.
 
 O gráfico deve mostrar a porcentagem gasta em cada categoria passada para a função. A porcentagem gasta deve ser calculada apenas com retiradas, não com depósitos. No lado esquerdo do gráfico, deve haver rótulos de 0 a 100. As "barras" no gráfico de barras devem ser feitas com o caractere "o". A altura de cada barra deve ser arredondada para baixo para o 10 mais próximo. A linha horizontal abaixo das barras deve ir dois espaços além da barra final. O nome de cada categoria deve ser escrito verticalmente abaixo da barra. Deve haver um título no topo que diz "Percentage spent by category" (Porcentagem gasta por categoria).
@@ -37,25 +27,4 @@ Olhe atentamente para o exemplo de resultado abaixo e certifique-se de que o esp
 
 
 
-Percentage spent by category
-100|         
- 90|        
- 80|         
- 70|          
- 60| o        
- 50| o        
- 40| o        
- 30| o        
- 20| o  o     
- 10| o  o  o  
-  0| o  o  o  
-    ----------
-    
-     F  C  A  
-     o  l  u  
-     o  o  t  
-     d  t  o  
-        h     
-        i     
-        n     
-        g     
+![image](https://github.com/AlexandrePMiranda/BudgetApp/assets/135765440/74b55098-bc4a-4b85-91a8-d63068ce5479)
