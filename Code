@@ -1,1 +1,180 @@
+zero = ['  0|']
+dez = [' 10|']
+vinte = [' 20|']
+trinta = [' 30|']
+quarenta = [' 40|']
+cinquenta = [' 50|']
+sessenta = [' 60|']
+setenta =[' 70|']
+oitenta = [' 80|']
+noventa = [' 90|']
+cem = ['100|']
+porsenas = [cem ,noventa, oitenta ,setenta, sessenta, cinquenta, quarenta,trinta,vinte,dez, zero]
+def diminuir(str):
+    max = 23 # Numero Maximo de caracteres Permitidos.
+    if len(str) > max:
+        return str[:max]
+    else:
+        return str
+def qntd_marks(n):
+    if n > 0 and n <= 0.05:
+        num = 0
+    elif n > 0.05 and n <= 0.15:
+        num = 1
+    elif n > 0.15 and n <= 0.25:
+        num = 2
+    elif n > 0.25 and n <= 0.35:
+        num = 3
+    elif n > 0.35 and n <= 0.45:
+        num = 4
+    elif n > 0.45 and n <= 0.55:
+        num = 5
+    elif n > 0.55 and n <= 0.65:
+        num = 6
+    elif n > 0.65 and n <= 0.75:
+        num = 7
+    elif n > 0.75 and n <= 0.85:
+        num = 8
+    elif n > 0.85 and n <= 0.95:
+        num = 9
+    else:
+        num = 10
+    return num
+def preencher_porcent(n):
 
+    for i in range(0, 10-n):
+        porsenas[i].append('   ')
+    for i in range(10-n,len(porsenas)):
+        porsenas[i].append(" o ")
+    return porsenas
+def det_maior_name(lst):
+    maior = lst[0]
+    try:
+        for i in range(1,len(lst)):
+            if len(lst[i]) > len(lst[i-1]):
+                maior = lst[i]
+            else:
+                maior = lst[i-1]
+    except:pass
+    return len(maior)
+class category:
+
+
+    def __init__(self, name):
+        self.ledger = list()
+        self.cofre = float(0)
+        self.name = name
+
+    def check_founds(self, amount):
+        if float(amount) > self.cofre:
+            return False
+        else:
+            return True
+    def deposite(self, amount, description):
+
+        o = {"amount": amount, "description": description}
+        self.ledger.append(o)
+        self.cofre = self.cofre + float(amount)
+
+    def withdraw(self, amount, description):
+        if self.check_founds(amount) is True:
+            amount = -float(amount)
+            o = {"amount": amount, "description": description}
+            self.cofre = self.cofre + float(amount)
+            self.ledger.append(o)
+            return True
+        else:
+            return False
+
+
+    def get_balance(self):
+        print(self.cofre)
+
+    def transfer(self, amount, budget):
+        if self.check_founds(amount) is True:
+            self.withdraw(amount, f"Transfer to {budget.name}")
+            budget.deposite(amount, f'Transfer from {self.name}')
+            return True
+        else:
+            return False
+    def __repr__(self):
+        MyList = list()
+        s = f'{self.name:*^30}'
+        MyList.append(s)
+        for i in range(0, len(self.ledger)):
+            a = self.ledger[i]
+            descripition = diminuir(a["description"])
+            b = f'{descripition:<23}{a["amount"]:>7,.2f}'
+            MyList.append(b)
+        total = f"Total: {self.cofre:,.2f}"
+        MyList.append(total)
+        mystr = [str(i) for i in MyList]
+        sep = "\n"
+
+        return sep.join(mystr)
+
+def create_spent_chart(lst):
+    #acessando amounts e determinando porcentagens
+    withdraws = list()
+    soma_withdraws = 0
+    amount_per_cat = list()
+    name_per_cat = list()
+    percent_per_cat = list()
+    # cada i é uma categoria
+    for i in lst:
+        ledger = i.ledger
+        soma_amount_cat = 0
+        # cada j é uma movimentação em uma categoria
+        for j in range(0, len(i.ledger)):
+            mov = ledger[j]
+            amount = mov["amount"]
+            if amount < 0:
+                dic = {f'{i.name}': amount}
+                withdraws.append(dic)
+                soma_withdraws += amount
+                soma_amount_cat += amount
+        amount_per_cat.append(soma_amount_cat)
+        name_per_cat.append(i.name)
+    for i in amount_per_cat:
+        percent = i/soma_withdraws
+        percent_per_cat.append(percent)
+#colocando as marcações de porcentagem
+    marks_per_cat = []
+    for i in percent_per_cat:
+        marks_per_cat.append(qntd_marks(i))
+    for marks in marks_per_cat:
+        preencher_porcent(marks)
+# colocando traços
+    tr = '-'
+    n_tracos = len(amount_per_cat)*3 + 1
+    tracos = [f'{tr*n_tracos:>{5+3*len(amount_per_cat)}}']
+    porsenas.append(tracos)
+#colocando nomes das categorias
+    matriz_names = list()
+    for name in name_per_cat:
+        letters = list()
+        for j in range((det_maior_name(name_per_cat))):
+            try:
+                letters.append(name[j])
+            except:
+                letters.append(' ')
+        matriz_names.append(letters)
+    linhas = len(matriz_names)
+    colunas = det_maior_name(name_per_cat)
+    names = list()
+    for i in range(det_maior_name(name_per_cat)):
+        lst = list()
+        names.append(lst)
+    for i in range(linhas):
+        for j in range(colunas):
+            letter = names[j]
+            letter.append(f' {matriz_names[i][j]} ')
+    for i in names:
+        porsenas.append(i)
+    porsenas_str = []
+    for i in range(len(porsenas)):
+        porsenas[i] = "".join(porsenas[i])
+        if i > 11:
+            porsenas[i] = f'    {porsenas[i]}'
+        porsenas_str.append(porsenas[i])
+    print('\n'.join(porsenas_str))
