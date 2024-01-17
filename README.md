@@ -15,6 +15,8 @@ Uma linha que exibe o total da categoria.
 Aqui está um exemplo de resultado:
 
 
+![image](https://github.com/AlexandrePMiranda/BudgetApp/assets/135765440/8bc5f7c0-2f28-4a82-bb1c-a9c331e36809)
+
 
 *************Food*************
 initial deposit        1000.00
